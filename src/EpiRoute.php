@@ -178,7 +178,7 @@ class EpiRoute
         {
           continue;
         }
-        else if(is_array($def['callback']) && method_exists($def['callback'][0], $def['callback'][1]))
+        else if(is_array($def['callback']) && (method_exists($def['callback'][0], $def['callback'][1]) || (method_exists($def['callback'][0], '__callStatic'))))
         {
           if(Epi::getSetting('debug'))
             getDebug()->addMessage(__CLASS__, sprintf('Matched %s : %s : %s : %s', $httpMethod, $this->route, json_encode($def['callback']), json_encode($arguments)));
